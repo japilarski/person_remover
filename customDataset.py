@@ -1,5 +1,6 @@
 import os
 import torch
+from torch.utils.data import Dataset
 
 from torchvision.io import read_image
 from torchvision.ops.boxes import masks_to_boxes
@@ -7,7 +8,7 @@ from torchvision import tv_tensors
 from torchvision.transforms.v2 import functional as F
 
 
-class PennFudanDataset(torch.utils.data.Dataset):
+class PennFudanDataset(Dataset):
     def __init__(self, root, transforms):
         self.root = root
         self.transforms = transforms

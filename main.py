@@ -1,8 +1,8 @@
 import torch
 import torchvision
-import external_utils.utils as utils
+import external_utils.coco_utils.custom_utils as utils
 
-from PennFudanDataset import PennFudanDataset
+from customDataset import PennFudanDataset
 from helpers.get_transform import get_transform
 
 model = torchvision.models.detection.fasterrcnn_resnet50_fpn(weights="DEFAULT")

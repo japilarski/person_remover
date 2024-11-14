@@ -1,6 +1,6 @@
 from external_utils.engine import train_one_epoch, evaluate
 import torch
-import PennFudanDataset
+import customDataset
 
 import torchvision
 from torchvision.models.detection.faster_rcnn import FastRCNNPredictor
@@ -8,7 +8,7 @@ from torchvision.models.detection.faster_rcnn import FastRCNNPredictor
 from helpers.get_model_instance_segmentation import get_model_instance_segmentation
 from helpers.get_transform import get_transform
 
-import external_utils.utils as utils
+import external_utils.coco_utils.custom_utils as utils
 
 # load a model pre-trained on COCO
 model = torchvision.models.detection.fasterrcnn_resnet50_fpn(weights="DEFAULT")
@@ -29,8 +29,8 @@ device = torch.device('cuda') if torch.cuda.is_available() else torch.device('cp
 # our dataset has two classes only - background and person
 num_classes = 2
 # use our dataset and defined transformations
-dataset = PennFudanDataset('data/PennFudanPed', get_transform(train=True))
-dataset_test = PennFudanDataset('data/PennFudanPed', get_transform(train=False))
+dataset = customDataset.PennFudanDataset('data/PennFudanPed', get_transform(train=True))
+dataset_test = customDataset.PennFudanDataset('data/PennFudanPed', get_transform(train=False))
 
 # split the dataset in train and test set
 indices = torch.randperm(len(dataset)).tolist()
